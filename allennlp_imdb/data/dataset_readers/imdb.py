@@ -55,7 +55,7 @@ class ImdbDatasetReader(DatasetReader):
                      Path(cache_dir.joinpath(neg_dir)).glob('*.txt'))
 
         for p in path:
-            yield self.text_to_instance(p.read_text(), 0 if 'pos' in str(p) else 1)
+            yield self.text_to_instance(p.read_text(), '0' if 'pos' in str(p) else '1')
 
     @overrides
     def text_to_instance(self, text: str, label: str = None) -> Instance:

@@ -7,6 +7,7 @@ import tarfile
 from itertools import chain
 
 from overrides import overrides
+from typing import Dict, Iterable, List
 
 from allennlp.common.file_utils import cached_path
 from allennlp.data.dataset_readers import DatasetReader

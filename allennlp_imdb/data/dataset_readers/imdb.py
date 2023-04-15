@@ -7,15 +7,13 @@ import tarfile
 from itertools import chain
 
 from overrides import overrides
+
 from typing import Dict, Iterable, List
 
-from allennlp.common.file_utils import cached_path
-from allennlp.data.dataset_readers import DatasetReader
-from allennlp.data.fields import LabelField, TextField, Field
-from allennlp.data import Instance
+from allennlp.data import DatasetReader, Instance
+from allennlp.data.fields import Field, LabelField, TextField
 from allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
-#from allennlp.data.tokenizers import Tokenizer, WordTokenizer
-from allennlp.data.tokenizers import Tokenizer, WhitespaceTokenizer
+from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
 
 logger = logging.getLogger(__name__)
 

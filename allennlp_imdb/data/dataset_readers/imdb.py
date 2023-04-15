@@ -60,10 +60,12 @@ class ImdbDatasetReader(DatasetReader):
             yield self.text_to_instance(p.read_text(), 0 if 'pos' in str(p) else 1)
 
     @overrides
-    #def text_to_instance(self, string: str, label: int) -> Instance:
-    def text_to_instance(self, text: str, label: str) -> Instance:
-        fields: Dict[str, Field] = {}
-        tokens = self._tokenizer.tokenize(text)
-        fields['tokens'] = TextField(tokens, self._token_indexers)
-        fields['label'] = LabelField(label, skip_indexing=True)
+    def text_to_instance(self, text: str, label: str = None) -> Instance:
+        tokens = self.tokenizer.tokenize(text)
+        if self.max_tokens:
+            tokens = tokens[: self.max_tokens]
+        text_field = TextField(tokens, self.token_indexers)
+        fields: Dict[str, Field] = {"text": text_field}
+        if label:
+            fields["label"] = LabelField(label)
         return Instance(fields)

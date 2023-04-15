@@ -37,7 +37,7 @@ class ImdbDatasetReader(DatasetReader):
         self._token_indexers = token_indexers or {'tokens': SingleIdTokenIndexer()}
 
     @overrides
-    def _read(self, file_path):
+    def _read(self, file_path) -> Iterable[Instance]:
         tar_path = cached_path(self.TAR_URL)
         tf = tarfile.open(tar_path, 'r')
         cache_dir = Path(osp.dirname(tar_path))

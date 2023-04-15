@@ -13,7 +13,8 @@ from allennlp.data.dataset_readers import DatasetReader
 from allennlp.data.fields import LabelField, TextField, Field
 from allennlp.data import Instance
 from allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
-from allennlp.data.tokenizers import Tokenizer, WordTokenizer
+#from allennlp.data.tokenizers import Tokenizer, WordTokenizer
+from allennlp.data.tokenizers import Tokenizer, WhitespaceTokenizer
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +32,8 @@ class ImdbDatasetReader(DatasetReader):
                  lazy: bool = False) -> None:
         super().__init__(lazy=lazy)
 
-        self._tokenizer = tokenizer or WordTokenizer()
+        #self._tokenizer = tokenizer or WordTokenizer()
+        self._tokenizer = tokenizer or WhitespaceTokenizer()
         self._token_indexers = token_indexers or {'tokens': SingleIdTokenIndexer()}
 
     @overrides
